@@ -4,7 +4,7 @@ import {
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
 
-  const style = {
+const style = {
     width: '90%',
     margin: 'auto',
     'margin-top': '20px'

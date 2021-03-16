@@ -5,6 +5,7 @@ import Login from './Login';
 import Registration from './Registration';
 import Search from './Search';
 import Artist from './Artist';
+import Album from './Album';
 
 const Main = () => (
     <main>
@@ -15,6 +16,7 @@ const Main = () => (
                 <Route exact path='/registration' component={Registration} />
                 <Route exact path='/search' component={Search} />
                 <Route exact path='/artist' component={Artist} />
+                <Route exact path='/album' component={Album} />
             </Switch>
         </BrowserRouter>
     </main>
