@@ -4,6 +4,7 @@ import Home from './Home';
 import Login from './Login';
 import Registration from './Registration';
 import Search from './Search';
+import Artist from './Artist';
 
 const Main = () => (
     <main>
@@ -13,6 +14,7 @@ const Main = () => (
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/registration' component={Registration} />
                 <Route exact path='/search' component={Search} />
+                <Route exact path='/artist' component={Artist} />
             </Switch>
         </BrowserRouter>
     </main>
