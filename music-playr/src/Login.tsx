@@ -1,33 +1,71 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import * as React from "react";
+import { Input } from "./ui/Input";
+import { LoginButton } from "./ui/LoginButton";
+import styled from 'styled-components';
 
-const style = {
-    width: '50%',
-    margin: 'auto'
+const TitleStyle = styled("h1")`
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
+
+interface State {
+  username: string;
+  password: string;
 }
 
-const buttonStyle = {
-    width: '100%'
+interface Props {
+  onSubmit: (data: State) => void;
+  buttonText: string;
 }
 
-function Login() {
+export class Login extends React.PureComponent<Props, State> {
+  state = {
+    username: "",
+    password: ""
+  };
+
+  handleChange = (e: any) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    } as any);
+  };
+
+  render() {
+    const { username, password } = this.state;
+
     return (
-        <div style={style}>
-            <h1 style={{textAlign: 'center'}}>Bejelentkezés</h1>
-            <Form>
-                <FormGroup>
-                    <Label for="username">Felhasználónév: </Label>
-                    <Input type="text" name="username" id="username" />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="password">Jelszó: </Label>
-                    <Input type="password" name="password" id="password" />
-                </FormGroup>
-                <Button style= {buttonStyle}>Rajta</Button>
-                <a href="#" style={{fontSize: '20px'}}>Regisztráció</a>
-            </Form>
+      <div
+        style={{
+          width: "30%",
+          margin: "auto"
+        }}
+      >
+        <div>
+            <TitleStyle>Bejelentkezés</TitleStyle>
+            <Input
+                label="Felhasználónév"
+                type="text"
+                name="username"
+                placeholder="Add meg a felhasználóneved..."
+                value={username}
+                onChange={this.handleChange}
+            />
+            <Input
+                label="Jelszó"
+                type="password"
+                name="password"
+                placeholder="Add meg a jelszavad..."
+                value={password}
+                onChange={this.handleChange}
+            />
+            <LoginButton onClick={() => this.props.onSubmit(this.state)}>
+                Rajta
+            </LoginButton>
+            <a href="/registration">Regisztráció</a>
         </div>
-    )
+      </div>
+    );
+  }
 }
-
-export default Login;

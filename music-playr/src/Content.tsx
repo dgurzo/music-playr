@@ -1,14 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
-import Login from './Login';
-import Registration from './Registration';
+import { Login }  from './Login';
+import { Registration } from './Registration';
 import Search from './Search';
 import Artist from './Artist';
 import Album from './Album';
+import styled from 'styled-components';
+
+const Margin = styled("main")`
+    margin-left: 250px;
+`;
 
 const Main = () => (
-    <main>
+    <Margin>
         <BrowserRouter>
             <Switch>
                 <Route exact path='/' component={Home} />
@@ -19,7 +24,7 @@ const Main = () => (
                 <Route exact path='/album' component={Album} />
             </Switch>
         </BrowserRouter>
-    </main>
+    </Margin>
 )
   
 export default Main;
