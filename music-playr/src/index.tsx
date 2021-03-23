@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    position: fixed;
     width: 100%;
     height: 100%;
     -webkit-font-smoothing: antialiased;

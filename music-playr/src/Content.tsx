@@ -4,14 +4,14 @@ import Home from './Home';
 import { Login }  from './Login';
 import { Registration } from './Registration';
 import Search from './Search';
-import Artist from './Artist';
+import { Artist } from './Artist';
 import Album from './Album';
 import styled from 'styled-components';
 import { Profile } from './Profile';
 
 const Margin = styled("main")`
     margin-left: 250px;
-    overflow: auto;
+    margin-top: 80px;
 `;
 
 const Main = () => (

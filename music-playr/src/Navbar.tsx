@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Navbar = styled("header")`
+const Navbar = styled("header")`;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
