@@ -7,9 +7,11 @@ import Search from './Search';
 import Artist from './Artist';
 import Album from './Album';
 import styled from 'styled-components';
+import { Profile } from './Profile';
 
 const Margin = styled("main")`
     margin-left: 250px;
+    overflow: auto;
 `;
 
 const Main = () => (
@@ -22,6 +24,7 @@ const Main = () => (
                 <Route exact path='/search' component={Search} />
                 <Route exact path='/artist' component={Artist} />
                 <Route exact path='/album' component={Album} />
+                <Route exact path='/profile' component={Profile} />
             </Switch>
         </BrowserRouter>
     </Margin>

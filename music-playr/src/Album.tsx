@@ -16,7 +16,7 @@ function Album() {
     return (
         <div style={style}>
             <Media left href="#">
-                <img src="./img/100x100.jpg" alt="Generic placeholder image" />
+                <img src="" alt="Generic placeholder image" />
             </Media>
             <h3>Album címe</h3>
 
