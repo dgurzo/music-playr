@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import { Login }  from './Login';
 import { Registration } from './Registration';
-import Search from './Search';
+import { Search } from './Search';
 import { Artist } from './Artist';
 import Album from './Album';
 import styled from 'styled-components';
