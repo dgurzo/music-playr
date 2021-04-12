@@ -8,8 +8,8 @@ import { CardText } from './ui/CardText';
 export class Search extends React.PureComponent {
     render() {
         return (
-            <div>
-                <h2>Műfajok böngészése</h2>
+            <div style={{marginBottom: "80px"}}>
+                <h2 style={{marginLeft: '30px'}}>Műfajok böngészése</h2>
                 <CardContainer>
                     <Card>
                         <CardImage></CardImage>

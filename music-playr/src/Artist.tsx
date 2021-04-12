@@ -26,7 +26,7 @@ export class Artist extends React.PureComponent {
                     <Card>
                         <CardImage></CardImage>
                         <CardText>
-                            <h4>Album</h4>
+                            <h4><a href="/album">Album</a></h4>
                         </CardText>
                     </Card>
                     <Card>

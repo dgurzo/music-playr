@@ -1,5 +1,9 @@
 import * as React from "react";
 import styled from 'styled-components';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SearchIcon from '@material-ui/icons/Search';
+import CollectionsIcon from '@material-ui/icons/Collections';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 
 const SidebarStyle = styled("div")`
     position: fixed;
@@ -49,10 +53,10 @@ export class Sidebar extends React.PureComponent {
                 
                 <SidebarList>
                     <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Kezdőlap</SidebarListLink></li>
-                    <li><SidebarListLink href="/search" style={{textDecoration: 'none'}}>Keresés</SidebarListLink></li>
-                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Gyűjteményem</SidebarListLink></li>
-                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Kedvencek</SidebarListLink></li>
-                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>+ Új playlist</SidebarListLink></li>
+                    <li><SidebarListLink href="/search" style={{textDecoration: 'none'}}><SearchIcon /> Keresés</SidebarListLink></li>
+                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}><CollectionsIcon /> Gyűjteményem</SidebarListLink></li>
+                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}><FavoriteIcon /> Kedvencek</SidebarListLink></li>
+                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}><PlaylistAddIcon /> Új playlist</SidebarListLink></li>
                 </SidebarList>
             </SidebarStyle>
         )
