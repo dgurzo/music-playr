@@ -49,7 +49,7 @@ export class Sidebar extends React.PureComponent {
                 
                 <SidebarList>
                     <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Kezdőlap</SidebarListLink></li>
-                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Keresés</SidebarListLink></li>
+                    <li><SidebarListLink href="/search" style={{textDecoration: 'none'}}>Keresés</SidebarListLink></li>
                     <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Gyűjteményem</SidebarListLink></li>
                     <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>Kedvencek</SidebarListLink></li>
                     <li><SidebarListLink href="#" style={{textDecoration: 'none'}}>+ Új playlist</SidebarListLink></li>

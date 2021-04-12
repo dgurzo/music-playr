@@ -1,66 +1,234 @@
 import React from 'react';
-import { Media, Button, Table } from 'reactstrap';
+import styled from 'styled-components';
+import ChechIcon from '@material-ui/icons/Check';
 
-const style = {
-    width: '90%',
-    margin: 'auto',
-    'margin-top': '20px'
-}
+const AlbumStyle = styled("div")`
+  position: relative;
+  margin: 80px auto;
+  width: 95%;
+`;
 
-const button = {
-    width: "100px",
-    margin: '5px 10px 40px 0px'
-}
+const AlbumContainer = styled("div")`
+  display: block;
+  line-height: 1.4;
+  font-size: 14px;
+`;
 
-function Album() {
-    return (
-        <div style={style}>
-            <Media left href="#">
-                <img src="" alt="Generic placeholder image" />
-            </Media>
-            <h3>Album címe</h3>
+const AlbumInfo = styled("div")`
+  display: flex;
+  margin-bottom: 15px;
+  flex-flow: row wrap;
+`;
 
-            <div>
-                <Button color="primary" style={button}>Play</Button>{' '}
-                <Button color="primary" style={button}>Like</Button>{' '}
-            </div>
+const AlbumInfoArt = styled("div")`
+  display: block;
+  box-sizing: border-box;
+`;
 
-            <Table dark>
-                <thead>
-                    <tr>
-                    <th>#</th>
-                    <th>Cím</th>
-                    <th>Hossz</th>
-                    <th>Előadó</th>
-                    <th></th>
-                    </tr>
-                </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Dal1</td>
-          <td>Hossz1</td>
-          <td>Előadó1</td>
-          <td><Button color="primary" style={{width: '100px'}}>Play</Button>{' '}</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Dal2</td>
-          <td>Hossz2</td>
-          <td>Előadó2</td>
-          <td><Button color="primary" style={{width: '100px'}}>Play</Button>{' '}</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Dal3</td>
-          <td>Hossz3</td>
-          <td>Előadó3</td>
-          <td><Button color="primary" style={{width: '100px'}}>Play</Button>{' '}</td>
-        </tr>
-      </tbody>
-    </Table>
-        </div>
+const AlbumInfoMeta = styled("div")`
+  margin-left: 15px;
+  display: flex;
+  flex-flow: column wrap;
+`;
+
+const AlbumYear = styled("div")`
+  color: #aaaaaa;
+  letter-spacing: 1px;
+`;
+
+const AlbumName = styled("div")`
+  color: white;
+  font-size: 30px;
+  font-weight: 100;
+`;
+
+const AlbumActions = styled("div")`
+  margin-top: auto;
+`;
+
+const ButtonLight = styled("button")`
+  padding: 5px 15px;
+  margin-right: 10px;
+  background: none;
+  color: #c8c8c8;
+  border: 1px solid #c8c8c8;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid green;
+    font-color: white;
+  }
+`;
+
+const AlbumTracks = styled("div")`
+  display: block;
+  line-height: 1.4;
+  font-size: 14px;
+`;
+
+const Tracks = styled("div")`
+  display: flex;
+  flex-flow: column wrap;
+  margin-botom: 15px;
+`;
+
+const TracksHeading = styled("div")`
+  color: #aaaaaa;
+  height: 42px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+`;
+
+const TracksHeadingNumber = styled("div")`
+  margin-left: 10px;
+  font-style: italic;
+`;
+
+const TracksHeadingTitle = styled("div")`
+  margin-left: 70px;
+  width: 70px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
+
+const TracksHeadingLength = styled("div")`
+  margin-left: auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
+
+const Track = styled("div")`
+  border-top: 1px solid #282828;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 10px 0;
+  &:hover {
+    background: #282828;
+  }
+`;
+
+const TrackNumber = styled("div")`
+  margin-left: 10px;
+  color: #aaaaaa;
+  width: 12px;
+`;
+
+const TrackAdded = styled("div")`
+  margin-left: 20px;
+  color: #c8c8c8;
+`;
+
+const TrackTitle = styled("div")`
+  margin-left: 22px;
+  color: white;
+`;
+
+const TrackLength = styled("div")`
+  margin-left: auto;
+  color: #aaaaaa;
+`;
+
+export class Album extends React.PureComponent {
+  render() {
+    return(
+      <div>
+        <AlbumStyle>
+          <AlbumContainer>
+            <AlbumInfo>
+              <AlbumInfoArt>
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" style={{width: "135px", height: "135px"}} />
+              </AlbumInfoArt>
+              
+              <AlbumInfoMeta>
+                <AlbumYear>2015</AlbumYear>
+                <AlbumName>When It's Dark Out</AlbumName>
+                <AlbumActions>
+                  <ButtonLight>Play</ButtonLight>
+                  <ButtonLight>Like</ButtonLight>
+                </AlbumActions>
+              </AlbumInfoMeta>
+            </AlbumInfo>
+
+            <AlbumTracks>
+              <TracksHeading>
+                <TracksHeadingNumber>#</TracksHeadingNumber>
+                <TracksHeadingTitle>Song</TracksHeadingTitle>
+                <TracksHeadingLength>Length</TracksHeadingLength>
+              </TracksHeading>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+              <Track>
+                <TrackNumber>1</TrackNumber>
+                <TrackAdded>
+                  <ChechIcon></ChechIcon>
+                </TrackAdded>
+                <TrackTitle>Title</TrackTitle>
+                <TrackLength>1:11</TrackLength>
+              </Track>
+            </AlbumTracks>
+          </AlbumContainer>
+        </AlbumStyle>
+      </div>
     )
+  }
 }
-
-export default Album;

@@ -2,6 +2,7 @@ import React from 'react';
 import Content from './Content';
 import { Navigationbar } from './Navbar';
 import { Sidebar } from './Sidebar';
+import { MusicPlayer } from './MusicPlayer';
 import styled from 'styled-components';
 
 const Style = styled("div")`
@@ -14,6 +15,7 @@ function App() {
         <Navigationbar />
         <Sidebar />
         <Content />
+        <MusicPlayer />
     </Style>
   );
 }

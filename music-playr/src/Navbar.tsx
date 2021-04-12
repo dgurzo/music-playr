@@ -22,16 +22,6 @@ const NavbarLink = styled("a")`
     color: #b3b3b3;
 `;
 
-/*const NavbarList = styled("ul")`
-    list-style: none;
-`;
-
-const NavbarListItem = styled("li")`
-    display: inline-block;
-    padding: 0 15px;
-    text-transformation: uppercase;
-`;*/
-
 const Button = styled("a")`
     cursor: pointer;
     color: #fff;
@@ -55,7 +45,7 @@ const Searchbox = styled("div")`
     position: relative;
     width: 400px;
     height: 42px;
-    border: 3px solid white;
+    border: 2px solid white;
     padding: 0px 10px;
     border-radius: 50px;
 `;
@@ -89,9 +79,3 @@ export class Navigationbar extends React.PureComponent {
         )
     }
 }
-
-/*<NavbarList>
-                        <NavbarListItem><NavbarLink href="#"> asdasd</NavbarLink></NavbarListItem>
-                        <NavbarListItem><NavbarLink href="#"> asdasd</NavbarLink></NavbarListItem>
-                        <NavbarListItem><NavbarLink href="#"> asdasd</NavbarLink></NavbarListItem>
-                    </NavbarList>*/
