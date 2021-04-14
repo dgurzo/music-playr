@@ -1,6 +1,4 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import { ListGroup, ListGroupItem } from 'reactstrap';
 
 const style = {
     margin: '20px auto'

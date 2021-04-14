@@ -134,11 +134,11 @@ const TrackLength = styled("div")`
   color: #aaaaaa;
 `;
 
-export class Album extends React.PureComponent {
-  render() {
-    return(
-      <div>
-        <AlbumStyle>
+export class Playlist extends React.PureComponent {
+    render() {
+        return (
+            <div>
+                <AlbumStyle>
           <AlbumContainer>
             <AlbumInfo>
               <AlbumInfoArt>
@@ -146,11 +146,11 @@ export class Album extends React.PureComponent {
               </AlbumInfoArt>
               
               <AlbumInfoMeta>
-                <AlbumYear>2015</AlbumYear>
-                <AlbumName>When It's Dark Out</AlbumName>
+                <AlbumYear>Tulajdonos neve</AlbumYear>
+                <AlbumName>Playlist neve</AlbumName>
+                <AlbumYear>x db dal | összesen pp:mm hosszú</AlbumYear>
                 <AlbumActions>
                   <ButtonLight>Play</ButtonLight>
-                  <ButtonLight>Like</ButtonLight>
                 </AlbumActions>
               </AlbumInfoMeta>
             </AlbumInfo>
@@ -228,7 +228,7 @@ export class Album extends React.PureComponent {
             </AlbumTracks>
           </AlbumContainer>
         </AlbumStyle>
-      </div>
-    )
-  }
+            </div>
+        )
+    }
 }

@@ -26,7 +26,7 @@ const DataP = styled("p")`
 export class Profile extends React.PureComponent {
     render() {
         return (
-            <div>
+            <div style={{marginBottom: '80px'}}>
                 <ProfileStyle>
                     <Image src="https://store-images.s-microsoft.com/image/apps.46943.9007199266245148.65716085-8f7e-40af-9dd6-34b7bc30c6dd.af0b8fbf-5d63-4c74-97a9-31eefb48822b?mode=scale&q=90&h=300&w=300" alt="profile picture"/>
                     <h1>Teljes név</h1>

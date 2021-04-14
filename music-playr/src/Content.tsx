@@ -8,6 +8,7 @@ import { Artist } from './Artist';
 import { Album } from './Album';
 import styled from 'styled-components';
 import { Profile } from './Profile';
+import { Playlist } from './Playlist';
 
 const Margin = styled("main")`
     margin-left: 250px;
@@ -25,6 +26,7 @@ const Main = () => (
                 <Route exact path='/artist' component={Artist} />
                 <Route exact path='/album' component={Album} />
                 <Route exact path='/profile' component={Profile} />
+                <Route exact path='/playlist' component={Playlist} />
             </Switch>
         </BrowserRouter>
     </Margin>
