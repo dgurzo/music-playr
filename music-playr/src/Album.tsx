@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ChechIcon from '@material-ui/icons/Check';
 
+// TODO: organize the css into separate files under /ui folder
+
 const AlbumStyle = styled("div")`
   position: relative;
   margin: 80px auto;

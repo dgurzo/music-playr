@@ -3,8 +3,7 @@ import IUser from '../interfaces/User';
 
 const userSchema = new mongoose.Schema({
     full_name: {
-        type: String,
-        required: true
+        type: String
     },
     username: {
         type: String,
@@ -14,11 +13,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: String,
-    profile_pic: {
-        data: Buffer,
-        contentType: String
-    }
-})
+    email: String
+});
 
 export default mongoose.model<IUser>('User', userSchema);
