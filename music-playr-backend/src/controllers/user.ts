@@ -11,7 +11,7 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const register = (req: Request, res: Response, next: NextFunction) => {
-    let { username, password } = req.body;
+    let { full_name, username, password, email } = req.body;
 
     bcryptjs.hash(password, 10, (hashError, hash) => {
         if(hashError) {
@@ -24,8 +24,10 @@ const register = (req: Request, res: Response, next: NextFunction) => {
         // TODO: Insert user into DB
         const _user = new User({
             _id: new mongoose.Types.ObjectId(),
+            full_name,
             username,
-            password: hash
+            password: hash,
+            email
         });
 
         return _user.save()

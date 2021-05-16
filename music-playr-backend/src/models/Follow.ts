@@ -6,10 +6,10 @@ const followSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    _followed_id: [{
+    _followed_id: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }
 })
 
 export default mongoose.model<IFollow>('Follow', followSchema);

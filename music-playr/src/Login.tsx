@@ -1,7 +1,8 @@
-import * as React from "react";
+import { useState, FunctionComponent } from "react";
 import { Input } from "./ui/Input";
 import { LoginButton } from "./ui/LoginButton";
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 const TitleStyle = styled("h1")`
     text-align: center;
@@ -14,58 +15,64 @@ interface State {
   password: string;
 }
 
-interface Props {
-  onSubmit: (data: State) => void;
-  buttonText: string;
-}
-
-export class Login extends React.PureComponent<Props, State> {
-  state = {
+export const Login: FunctionComponent<State> = () => {
+  const [formData, setFormdata] = useState({
     username: "",
     password: ""
-  };
+  });
 
-  handleChange = (e: any) => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    } as any);
-  };
+  let history = useHistory();
 
-  render() {
-    const { username, password } = this.state;
+  const handleSubmit = () => {
+    const newFormData = {
+      username: formData.username,
+      password: formData.password
+    }
 
-    return (
-      <div
-        style={{
-          width: "30%",
-          margin: "auto"
-        }}
-      >
-        <div>
-            <TitleStyle>Bejelentkezés</TitleStyle>
-            <Input
-                label="Felhasználónév"
-                type="text"
-                name="username"
-                placeholder="Add meg a felhasználóneved..."
-                value={username}
-                onChange={this.handleChange}
-            />
-            <Input
-                label="Jelszó"
-                type="password"
-                name="password"
-                placeholder="Add meg a jelszavad..."
-                value={password}
-                onChange={this.handleChange}
-            />
-            <LoginButton onClick={() => this.props.onSubmit(this.state)}>
-                Rajta
-            </LoginButton>
-            <a href="/registration">Regisztráció</a>
-        </div>
-      </div>
-    );
+    fetch(`http://localhost:5000/users/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Success: " + JSON.stringify(data));
+            })
+            .catch((error) => {
+                console.log("Error: " + error);
+            });
+                
+            window.alert("Succesful login!");
+            history.push("/");
   }
+  
+  return (
+    <div
+      style={{
+        width: "30%",
+        margin: "auto"
+      }}>
+      <div>
+        <TitleStyle>Bejelentkezés</TitleStyle>
+        <Input
+          label="Felhasználónév"
+          type="text"
+          name="username"
+          placeholder="Add meg a felhasználóneved..."
+          value={formData.username}
+          onChange={(e) => setFormdata({...formData, username: e.target.value})}/>
+        <Input
+          label="Jelszó"
+          type="password"
+          name="password"
+          placeholder="Add meg a jelszavad..."
+          value={formData.password}
+          onChange={(e) => setFormdata({...formData, password: e.target.value})}/>
+        <LoginButton onClick={handleSubmit}>Rajta</LoginButton>
+        <a href="/registration">Regisztráció</a>
+      </div>
+    </div>
+  );
 }

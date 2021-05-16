@@ -7,21 +7,16 @@ const albumSchema = new mongoose.Schema({
         required: true
     },
     release_date: {
-        type: Date,
-        required: true
+        type: Date
     },
     _genre_id: [{
         type: Schema.Types.ObjectId,
         ref: 'Genre'
     }],
     _artist_id: [{
-        type: Schema.Types.ObjectId.cast,
+        type: Schema.Types.ObjectId,
         ref: 'Artist'
-    }],
-    image: {
-        data: Buffer,
-        contentType: String
-    }
+    }]
 })
 
 export default mongoose.model<IAlbum>('Album', albumSchema);

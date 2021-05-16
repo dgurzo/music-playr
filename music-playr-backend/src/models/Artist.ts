@@ -9,11 +9,7 @@ const artistSchema = new mongoose.Schema({
     _genre_id: [{
         type: Schema.Types.ObjectId,
         ref: 'Genre'
-    }],
-    image: {
-        data: Buffer,
-        contentType: String
-    }
+    }]
 })
 
 export default mongoose.model<IArtist>('Artist', artistSchema);

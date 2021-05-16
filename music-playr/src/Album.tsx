@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ChechIcon from '@material-ui/icons/Check';
+import { History } from 'history';
 
 // TODO: organize the css into separate files under /ui folder
 
@@ -136,20 +137,55 @@ const TrackLength = styled("div")`
   color: #aaaaaa;
 `;
 
-export class Album extends React.PureComponent {
-  render() {
+interface Props {
+  history: History
+}
+
+interface Song {
+  _id: string,
+  name: string,
+  _artist_id: string[],
+  _album_id: string,
+  seconds: number
+}
+
+export const Album: FunctionComponent<Props> = ({history}) => {
+  const [album, setAlbum] = useState<any>(history.location.state);
+  const [songs, setSongs] = useState<Song[]>([]);
+
+  useEffect(() => {
+    console.log(album);
+    GetSongs();
+  }, []);
+
+  const GetSongs = async () => {
+    let response = await fetch("http://localhost:5000/album/get/songs", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                albumid: album._id
+            })
+        });
+        let son = await response.json();
+        console.log(son);
+        setSongs(son);
+        console.log(songs);
+  }
+
     return(
       <div>
         <AlbumStyle>
           <AlbumContainer>
             <AlbumInfo>
               <AlbumInfoArt>
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" style={{width: "135px", height: "135px"}} />
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="album_image" style={{width: "135px", height: "135px"}} />
               </AlbumInfoArt>
               
               <AlbumInfoMeta>
-                <AlbumYear>2015</AlbumYear>
-                <AlbumName>When It's Dark Out</AlbumName>
+                <AlbumYear>ALBUM</AlbumYear>
+                <AlbumName>{album.name}</AlbumName>
                 <AlbumActions>
                   <ButtonLight>Play</ButtonLight>
                   <ButtonLight>Like</ButtonLight>
@@ -163,74 +199,20 @@ export class Album extends React.PureComponent {
                 <TracksHeadingTitle>Song</TracksHeadingTitle>
                 <TracksHeadingLength>Length</TracksHeadingLength>
               </TracksHeading>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
-              <Track>
-                <TrackNumber>1</TrackNumber>
-                <TrackAdded>
-                  <ChechIcon></ChechIcon>
-                </TrackAdded>
-                <TrackTitle>Title</TrackTitle>
-                <TrackLength>1:11</TrackLength>
-              </Track>
+              {songs.map((song, index) => (
+                <Track key={song._id}>
+                  <TrackNumber>{index + 1}</TrackNumber>
+                  <TrackAdded>
+                    <ChechIcon></ChechIcon>
+                  </TrackAdded>
+                  <TrackTitle>{song.name}</TrackTitle>
+                  <TrackLength>{(song.seconds/60).toFixed(0)}:{song.seconds%60}</TrackLength>
+                </Track>
+              ))}
+              
             </AlbumTracks>
           </AlbumContainer>
         </AlbumStyle>
       </div>
     )
-  }
 }

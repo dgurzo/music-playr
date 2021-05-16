@@ -3,7 +3,8 @@ import IUser from '../interfaces/User';
 
 const userSchema = new mongoose.Schema({
     full_name: {
-        type: String
+        type: String,
+        required: true
     },
     username: {
         type: String,

@@ -11,7 +11,7 @@ box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
 text-align: center;
 transition: 0.5s;
 cursor: pointer;
-margin: 40px 20px;
+margin: 25px 35px;
 &:hover {
     transform: scale(1.2);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);

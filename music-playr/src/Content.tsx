@@ -9,6 +9,7 @@ import { Album } from './Album';
 import styled from 'styled-components';
 import { Profile } from './Profile';
 import { Playlist } from './Playlist';
+import { GenrePage } from './Genre';
 
 const Margin = styled("main")`
     margin-left: 250px;
@@ -23,6 +24,7 @@ const Main = () => (
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/registration' component={Registration} />
                 <Route exact path='/search' component={Search} />
+                <Route exact path='/genre' component={GenrePage} />
                 <Route exact path='/artist' component={Artist} />
                 <Route exact path='/album' component={Album} />
                 <Route exact path='/profile' component={Profile} />
