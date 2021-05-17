@@ -6,6 +6,7 @@ import { CardImage } from './ui/CardImage';
 import { CardText } from './ui/CardText';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
+import AudioPlayer from 'react-h5-audio-player';
 
 const GenreStyle = styled("div")`
     position: relative;

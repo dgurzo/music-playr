@@ -16,7 +16,7 @@ const likeArtist = (req: Request, res: Response, next: NextFunction) => {
     .then(user => {
         if(user === null) {
             return like.save()
-            .then( like => {
+            .then(like => {
                 return res.status(201).json(like);
             })
             .catch(error => {
@@ -39,19 +39,34 @@ const likeArtist = (req: Request, res: Response, next: NextFunction) => {
             })});
         }
     });
-    
-    
-
-    /*return like.save()
-    .then(like => {
-        return res.status(201).json(like);
-    })
-    .catch(error => {
-        return res.status(500).json({
-            message: error.message,
-            error
-        });
-    });*/
 }
 
-export default { likeArtist };
+const getUserFavArtists = (req: Request, res: Response, next: NextFunction) => {
+    let { userid } = req.body;
+    let favs: any[] = [];
+
+    FavouriteArtist.aggregate([
+        {
+            $lookup: {
+                from: "artists",
+                localField: "_artist_id",
+                foreignField: "_id",
+                as: "artist"
+            }
+        }
+    ])
+    .exec()
+    .then((fav: any) => {
+        favs = fav;
+        console.log(favs);
+        for(let i = 0; i < favs.length; i++) {
+            if(favs[i]._user_id != userid) {
+                favs.splice(i, 1);
+            }
+        }
+        console.log(favs);
+        return res.status(500).json(favs);
+    })
+}
+
+export default { likeArtist, getUserFavArtists };

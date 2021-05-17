@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ChechIcon from '@material-ui/icons/Check';
 import { History } from 'history';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
@@ -197,8 +196,26 @@ export const Album: FunctionComponent<Props> = ({history}) => {
         };
   }
 
-  const handleSongLike = async () => {
-
+  const handleSongLike = async (songId: string) => {
+    let userId = localStorage.getItem('userid');
+        let response =  await fetch("http://localhost:5000/favouritesong/like", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userid: userId,
+                songid: songId
+            })
+        });
+        let likeres = await response.json();
+        console.log(likeres);
+        
+        if(likeres.delete == "successful") {
+            window.alert("Successful delete from favourite songs!");
+        } else {
+            window.alert("Song like successful!");
+        };
   }
 
     return(
@@ -231,7 +248,7 @@ export const Album: FunctionComponent<Props> = ({history}) => {
                 <Track key={song._id}>
                   <TrackNumber>{index + 1}</TrackNumber>
                   <TrackAdded>
-                    <FavoriteIcon onClick={handleSongLike}></FavoriteIcon>
+                    <FavoriteIcon onClick={(e) => handleSongLike(song._id)}></FavoriteIcon>
                   </TrackAdded>
                   <TrackTitle>{song.name}</TrackTitle>
                   <TrackLength>{(song.seconds/60).toFixed(0)}:{song.seconds%60}</TrackLength>

@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import { Profile } from './Profile';
 import { Playlist } from './Playlist';
 import { GenrePage } from './Genre';
+import { FavouriteSongs } from './FavouriteSongs'
+import { Collections } from './Collections';
 
 const Margin = styled("main")`
     margin-left: 250px;
@@ -29,6 +31,8 @@ const Main = () => (
                 <Route exact path='/album' component={Album} />
                 <Route exact path='/profile' component={Profile} />
                 <Route exact path='/playlist' component={Playlist} />
+                <Route exact path='/favouritesongs' component={FavouriteSongs} />
+                <Route exact path='/collections' component={Collections} />
             </Switch>
         </BrowserRouter>
     </Margin>
