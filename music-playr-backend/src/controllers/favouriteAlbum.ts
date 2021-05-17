@@ -11,7 +11,39 @@ const likeAlbum = (req: Request, res: Response, next: NextFunction) => {
         _album_id: albumid
     });
 
-    return like.save()
+    FavouriteAlbum.findOne({_user_id: userid, _album_id: albumid})
+    .exec()
+    .then(user => {
+        if(user === null) {
+            return like.save()
+            .then(like => {
+                return res.status(201).json(like);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                })
+            })
+        } else {
+            FavouriteAlbum.deleteOne({_user_id: userid, _album_id: albumid})
+            .exec()
+            .then(result => {
+                return res.status(200).json({
+                    delete: "successful"
+                })
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                })
+            });
+        }
+    })
+
+
+    /*return like.save()
     .then(like => {
         return res.status(201).json(like);
     })
@@ -20,7 +52,7 @@ const likeAlbum = (req: Request, res: Response, next: NextFunction) => {
             message: error.message,
             error
         });
-    });
+    });*/
 }
 
 export default { likeAlbum };

@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ChechIcon from '@material-ui/icons/Check';
 import { History } from 'history';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 // TODO: organize the css into separate files under /ui folder
 
@@ -174,6 +175,32 @@ export const Album: FunctionComponent<Props> = ({history}) => {
         console.log(songs);
   }
 
+  const handleLike = async () => {
+    let userId = localStorage.getItem('userid');
+        let response =  await fetch("http://localhost:5000/favouritealbum/like", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userid: userId,
+                albumid: album._id
+            })
+        });
+        let likeres = await response.json();
+        console.log(likeres);
+        
+        if(likeres.delete == "successful") {
+            window.alert("Successful delete from favourite albums!");
+        } else {
+            window.alert("Album like successful!");
+        };
+  }
+
+  const handleSongLike = async () => {
+
+  }
+
     return(
       <div>
         <AlbumStyle>
@@ -188,7 +215,7 @@ export const Album: FunctionComponent<Props> = ({history}) => {
                 <AlbumName>{album.name}</AlbumName>
                 <AlbumActions>
                   <ButtonLight>Play</ButtonLight>
-                  <ButtonLight>Like</ButtonLight>
+                  <ButtonLight onClick={handleLike}>Like</ButtonLight>
                 </AlbumActions>
               </AlbumInfoMeta>
             </AlbumInfo>
@@ -199,11 +226,12 @@ export const Album: FunctionComponent<Props> = ({history}) => {
                 <TracksHeadingTitle>Song</TracksHeadingTitle>
                 <TracksHeadingLength>Length</TracksHeadingLength>
               </TracksHeading>
+              
               {songs.map((song, index) => (
                 <Track key={song._id}>
                   <TrackNumber>{index + 1}</TrackNumber>
                   <TrackAdded>
-                    <ChechIcon></ChechIcon>
+                    <FavoriteIcon onClick={handleSongLike}></FavoriteIcon>
                   </TrackAdded>
                   <TrackTitle>{song.name}</TrackTitle>
                   <TrackLength>{(song.seconds/60).toFixed(0)}:{song.seconds%60}</TrackLength>

@@ -23,29 +23,44 @@ export const Login: FunctionComponent<State> = () => {
 
   let history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newFormData = {
       username: formData.username,
       password: formData.password
     }
 
-    fetch(`http://localhost:5000/users/login`, {
+    /*fetch(`http://localhost:5000/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
             })
-            .then(res => res.json())
+            .then(res => {
+              res.json();
+            })
             .then(data => {
                 console.log("Success: " + JSON.stringify(data));
+                //localStorage.setItem('userid');
             })
             .catch((error) => {
                 console.log("Error: " + error);
-            });
-                
-            window.alert("Succesful login!");
-            history.push("/");
+            });*/
+    
+    let response = await fetch("http://localhost:5000/users/login", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    let loginres = await response.json();
+    console.log(loginres);
+    localStorage.setItem('token', loginres.token);
+    localStorage.setItem('userid', loginres.user._id);
+
+    window.alert("Succesful login!");
+    history.push("/");
   }
   
   return (

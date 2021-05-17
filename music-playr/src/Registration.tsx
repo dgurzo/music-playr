@@ -52,7 +52,7 @@ export const Registration: FunctionComponent<RegState> = () =>  {
             .catch((error) => {
                 console.log("Error: " + error);
             });
-                
+            
             window.alert("Succesful registration!");
             history.push("/login");
         } else {

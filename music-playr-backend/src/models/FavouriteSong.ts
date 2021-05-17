@@ -6,10 +6,10 @@ const favouriteSongSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    _song_id: [{
+    _song_id: {
         type: Schema.Types.ObjectId,
         ref: 'Song'
-    }]
+    }
 })
 
 export default mongoose.model<IFavouriteSong>('FavouriteSong', favouriteSongSchema);

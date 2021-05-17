@@ -6,10 +6,10 @@ const favouriteArtistSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    _artist_id: [{
+    _artist_id: {
         type: Schema.Types.ObjectId,
         ref: 'Artist'
-    }]
+    }
 })
 
 export default mongoose.model<IFavouriteArtist>('FavouriteArtist', favouriteArtistSchema);
