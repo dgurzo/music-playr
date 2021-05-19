@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Navbar = styled("header")`;
@@ -66,16 +66,32 @@ const SearchboxInput = styled("input")`
     }
 `;
 
-export class Navigationbar extends React.PureComponent {
-    render() {
-        return (
-            <Navbar>
-                <Header href="/">MusicPlayr</Header>
-                <Searchbox>
-                    <SearchboxInput type="text" placeholder="Keresés..."></SearchboxInput>
-                </Searchbox>
-                <Button href="/login">Bejelentkezés</Button>
-            </Navbar>
-        )
+export const Navigationbar: FunctionComponent = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    let user = localStorage.getItem('userid');
+
+    useEffect(() => {
+        if(localStorage.getItem('userid') || user) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+        console.log(user);
+    }, [user]);
+
+    const handleLogout = () => {
+        localStorage.clear();
     }
+    
+    return (
+        <Navbar>
+            <Header href="/">MusicPlayr</Header>
+            <Searchbox>
+                <SearchboxInput type="text" placeholder="Keresés..."></SearchboxInput>
+            </Searchbox>
+            {isLoggedIn ? 
+                <Button href="/" onClick={handleLogout}>Logout</Button> : 
+                <Button href="/login">Login</Button>}
+        </Navbar>
+    )
 }

@@ -4,6 +4,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import SearchIcon from '@material-ui/icons/Search';
 import CollectionsIcon from '@material-ui/icons/Collections';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import PersonIcon from '@material-ui/icons/Person';
 
 const SidebarStyle = styled("div")`
     position: fixed;
@@ -46,8 +47,9 @@ const SidebarListLink = styled("a")`
     }
 `;
 
-export class Sidebar extends React.PureComponent {
-    render() {
+export const Sidebar: React.FunctionComponent = () => {
+    let userId = localStorage.getItem('userid');
+
         return (
             <SidebarStyle>
                 
@@ -56,11 +58,12 @@ export class Sidebar extends React.PureComponent {
                     <li><SidebarListLink href="/search" style={{textDecoration: 'none'}}><SearchIcon /> Keresés</SidebarListLink></li>
                     <li><SidebarListLink href="/collections" style={{textDecoration: 'none'}}><CollectionsIcon /> Gyűjteményem</SidebarListLink></li>
                     <li><SidebarListLink href="/favouritesongs" style={{textDecoration: 'none'}}><FavoriteIcon /> Kedvencek</SidebarListLink></li>
-                    <li><SidebarListLink href="#" style={{textDecoration: 'none'}}><PlaylistAddIcon /> Új playlist</SidebarListLink></li>
+                    {(userId !== null) ?  
+                    <li><SidebarListLink href="/findusers" style={{textDecoration: 'none'}}><PersonIcon /> Find Users</SidebarListLink></li>:
+                    <></>}
                 </SidebarList>
             </SidebarStyle>
         )
-    }
 }
 
 //<SidebarHeader>MusicPlayr</SidebarHeader>

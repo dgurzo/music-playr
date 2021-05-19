@@ -93,10 +93,7 @@ const getAllUsers = (req: Request, res: Response, next: NextFunction) => {
     .select('-password')
     .exec()
     .then(users => {
-        return res.status(200).json({
-            users,
-            count: users.length
-        });
+        return res.status(200).json(users);
     })
     .catch(error => {
         return res.status(500).json({

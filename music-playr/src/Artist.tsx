@@ -59,7 +59,8 @@ export const Artist: FunctionComponent<Props> = ({history}) => {
 
     const handleLike = async () => {
         let userId = localStorage.getItem('userid');
-        let response =  await fetch("http://localhost:5000/favouriteartist/like", {
+        if(userId !== null) {
+            let response =  await fetch("http://localhost:5000/favouriteartist/like", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -77,13 +78,13 @@ export const Artist: FunctionComponent<Props> = ({history}) => {
         } else {
             window.alert("Artist like successful!");
         };
+        }
     }
 
     return (
         <div>
             <ArtistStyle>
                 <h1 style={{marginLeft: '30px', marginBottom: '20px'}}>{artist.name}</h1>
-                <GreenButton>Play</GreenButton>
                 <GreenButton onClick={handleLike}>Like</GreenButton>
             </ArtistStyle>
                 

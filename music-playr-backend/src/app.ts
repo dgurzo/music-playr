@@ -67,49 +67,70 @@ user1.save((err) => {
     console.log("hurrá");
 });*/
 
-/*let genre = new Genre();
-genre.name = "Ambient";
-genre.save((err) => {
+
+// ADDING GENRES
+/*let genre1 = new Genre();
+genre1.name = "Jazz";
+genre1.image = "https://i.scdn.co/image/ab67706f00000003c7f0907c5695f95f16e4eaf2"
+genre1.save((err) => {
+    console.log("err");
+});
+
+let genre2 = new Genre();
+genre2.name = "Blues";
+genre2.image = "https://i.scdn.co/image/ab67706f0000000317ef1cd7cae935006db1c9f7"
+genre2.save((err) => {
+    console.log("err");
+});
+
+let genre3 = new Genre();
+genre3.name = "Country";
+genre3.image = "https://i.scdn.co/image/ab67706f000000037df715eca2bdf3dc4f515b02"
+genre3.save((err) => {
     console.log("err");
 });*/
 
+// ADDING ARTISTS FOR JAZZ
 /*let artist = new Artist();
-artist.name = "Planetshakers";
-artist._genre_id = ["609becfb6792b53fd8b51e6c"];
+artist.name = "Christian Scott";
+artist._genre_id = ["60a37dd6b409f52d0c303eca"];
 artist.save((err) => {
+    console.log(err);
+});
+
+let artist2 = new Artist();
+artist2.name = "Jorja Smith";
+artist2._genre_id = ["60a37dd6b409f52d0c303eca"];
+artist2.save((err) => {
     console.log(err);
 });*/
 
+//ADDING ALBUMS FOR Christian Scott
 /*let album = new Album();
-album.name = "This is our time";
-album._genre_id = ["609becfb6792b53fd8b51e6c"];
-album._artist_id = ["609bfd674a53b61628d9e0cb"];
+album.name = "Axiom";
+album._genre_id = ["60a37dd6b409f52d0c303eca"];
+album._artist_id = ["60a37ea3c5a7881c18575834"];
+album.image = "https://i.scdn.co/image/ab67616d00001e026e3f3d43902a6c13c385c7f6";
 album.save((err) => {
     console.log(err);
 })*/
 
-/*let song = new Song();
-song.name = "My Heart is Alive";
-song.seconds = 90;
-song._artist_id = ["609bfd674a53b61628d9e0cb"];
-song._album_id = "609c06e67629c738d8d67edc";
-song.save((err) => {
+/*et album2 = new Album();
+album2.name = "Yesterday you said";
+album2._genre_id = ["60a37dd6b409f52d0c303eca"];
+album2._artist_id = ["60a37ea3c5a7881c18575834"];
+album2.save((err) => {
     console.log(err);
 })*/
 
-/*var spotifyApi = new SpotifyWebApi({
-    clientId: '00d7c4a1093143748eb60dbb0b6b3b76',
-  clientSecret: '57850cbd0d50478b8e79ea844fe9cb40',
-  redirectUri: 'http://www.example.com/callback'
-});
-
-spotifyApi.getCategory('rock', {
-    country: 'HU',
-    locale: 'HU'
-})
-.then(function(data) {
-  console.log(data.body);
-}, function(err) {
-  console.log("Something went wrong!", err);
-});*/
+//ADDING SONGS
+/*let song = new Song();
+song.name = "Huntress";
+song.seconds = 90;
+song._artist_id = ["60a37ea3c5a7881c18575834"];
+song._album_id = "60a383123078494650f8d0d8";
+song.url = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+song.save((err) => {
+    console.log(err);
+})*/
 

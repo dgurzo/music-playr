@@ -6,9 +6,6 @@ const albumSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    release_date: {
-        type: Date
-    },
     _genre_id: [{
         type: Schema.Types.ObjectId,
         ref: 'Genre'
@@ -16,7 +13,8 @@ const albumSchema = new mongoose.Schema({
     _artist_id: [{
         type: Schema.Types.ObjectId,
         ref: 'Artist'
-    }]
+    }],
+    image: String
 })
 
 export default mongoose.model<IAlbum>('Album', albumSchema);

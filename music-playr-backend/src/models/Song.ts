@@ -17,7 +17,8 @@ const songSchema = new mongoose.Schema({
     seconds: {
         type: Number,
         required: true
-    }
+    },
+    url: String
 })
 
 export default mongoose.model<ISong>('Song', songSchema);

@@ -15,7 +15,8 @@ const GenreStyle = styled("div")`
 
 interface Genre {
     _id: string,
-    name: string
+    name: string,
+    image: string
 }
 
 interface Artist {
@@ -61,13 +62,13 @@ export const GenrePage: FunctionComponent<Props> = ({history}) => {
             
             <h2 style={{margin: '40px 0 0 30px'}}>Artists</h2>
             <CardContainer>
-                {artists.map(artist => (
+                {artists.map((artist, i) => (
                     <Link to={{
                         pathname: '/artist',
                         state: artist
                     }}  key={artist._id} style={{textDecoration: 'none', color: 'white'}}>
                         <Card>
-                            <CardImage />
+                            <CardImage/>
                             <CardText>
                                 <h4>{artist.name}</h4>
                             </CardText> 
@@ -75,16 +76,6 @@ export const GenrePage: FunctionComponent<Props> = ({history}) => {
                     </Link>
                     ))
                 }
-            </CardContainer>
-
-            <h2 style={{margin: '40px 0 0 30px'}}>Playlists</h2>
-            <CardContainer style={{marginBottom: '70px'}}>
-                <Card>
-                    <CardImage></CardImage>
-                    <CardText>
-                        <h4><a href="/album">Playlist</a></h4>
-                    </CardText>
-                </Card>
             </CardContainer>
         </div>
     )

@@ -2,7 +2,8 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { History } from 'history';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import AudioPlayer from 'react-h5-audio-player';
+import { MusicPlayer } from './MusicPlayer';
 // TODO: organize the css into separate files under /ui folder
 
 const AlbumStyle = styled("div")`
@@ -137,6 +138,13 @@ const TrackLength = styled("div")`
   color: #aaaaaa;
 `;
 
+const AudioWrapper = styled("div")`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align: center;
+`;
+
 interface Props {
   history: History
 }
@@ -146,7 +154,8 @@ interface Song {
   name: string,
   _artist_id: string[],
   _album_id: string,
-  seconds: number
+  seconds: number,
+  url: string
 }
 
 export const Album: FunctionComponent<Props> = ({history}) => {
@@ -176,7 +185,8 @@ export const Album: FunctionComponent<Props> = ({history}) => {
 
   const handleLike = async () => {
     let userId = localStorage.getItem('userid');
-        let response =  await fetch("http://localhost:5000/favouritealbum/like", {
+    if(userId !== null) {
+      let response =  await fetch("http://localhost:5000/favouritealbum/like", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -194,11 +204,13 @@ export const Album: FunctionComponent<Props> = ({history}) => {
         } else {
             window.alert("Album like successful!");
         };
+    }  
   }
 
   const handleSongLike = async (songId: string) => {
     let userId = localStorage.getItem('userid');
-        let response =  await fetch("http://localhost:5000/favouritesong/like", {
+    if(userId !== null) {
+      let response =  await fetch("http://localhost:5000/favouritesong/like", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -216,6 +228,7 @@ export const Album: FunctionComponent<Props> = ({history}) => {
         } else {
             window.alert("Song like successful!");
         };
+    }  
   }
 
     return(
@@ -257,6 +270,15 @@ export const Album: FunctionComponent<Props> = ({history}) => {
               
             </AlbumTracks>
           </AlbumContainer>
+          
+          <AudioWrapper>
+            <AudioPlayer 
+              showSkipControls
+              layout='horizontal'
+              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+              
+            />
+          </AudioWrapper>
         </AlbumStyle>
       </div>
     )

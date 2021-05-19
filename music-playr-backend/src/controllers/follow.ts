@@ -13,16 +13,64 @@ const startFollow = (req: Request, res: Response, next: NextFunction) => {
         _followed_id: followedid
     });
 
-    return follow.save()
-    .then(follow => {
-        return res.status(201).json(follow);
+    Follow.findOne({_follower_id: followerid, _followed_id: followedid})
+    .exec()
+    .then(fol => {
+        if(fol === null) {
+            return follow.save()
+            .then(f => {
+                return res.status(201).json(follow);
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                });
+            });
+        } else {
+            Follow.deleteOne({_follower_id: followerid, _followed_id: followedid})
+            .exec()
+            .then(result => {
+                return res.status(200).json({
+                    delete: "successful"
+                })
+            })
+            .catch(error => {
+                return res.status(500).json({
+                    message: error.message,
+                    error
+                })
+            });
+        }
     })
-    .catch(error => {
-        return res.status(500).json({
-            message: error.message,
-            error
-        });
-    });
 }
 
-export default { startFollow };
+const getFollows = (req: Request, res: Response, next: NextFunction) => {
+    let { userid } = req.body;
+    let fol: any[] = [];
+
+    Follow.aggregate([
+        {
+            $lookup: {
+                from: "users",
+                localField: "_followed_id",
+                foreignField: "_id",
+                as: "follower"
+            }
+        }
+    ])
+    .exec()
+    .then((follow: any) => {
+        fol = follow;
+        console.log(fol);
+        for(let i = 0; i < fol.length; i++) {
+            if(fol[i]._follower_id != userid) {
+                fol.splice(i, 1);
+            }
+        }
+        console.log(fol);
+        return res.status(500).json(fol);
+    })
+}
+
+export default { startFollow, getFollows };

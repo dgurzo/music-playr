@@ -4,6 +4,7 @@ import { CardContainer } from './ui/CardContainer';
 import { Card } from './ui/Card';
 import { CardImage } from './ui/CardImage';
 import { CardText } from './ui/CardText';
+import { Link } from 'react-router-dom';
 
 const ProfileStyle = styled("div")`
     position: relative;
@@ -94,30 +95,39 @@ export const Collections: FunctionComponent = () => {
         <div>
             <ProfileStyle>
                 <h1>My collections</h1>
-                <DataP></DataP>
             </ProfileStyle>
                 
             <h2 style={{margin: '30px 0 0 30px'}}>Liked artists</h2>
             <CardContainer>
                 {artists.map(artist => (
-                    <Card key={artist._id}>
-                    <CardImage></CardImage>
-                    <CardText>
-                        <h4>{artist.name}</h4>
-                    </CardText>
-                </Card>
+                    <Link to={{
+                        pathname: "/artist",
+                        state: artist
+                    }} key={artist._id} style={{textDecoration: 'none', color: 'white'}}>
+                        <Card key={artist._id}>
+                            <CardImage></CardImage>
+                            <CardText>
+                                <h4>{artist.name}</h4>
+                            </CardText>
+                        </Card>
+                </Link>
                 ))} 
             </CardContainer>
 
             <h2 style={{margin: '30px 0 0 30px'}}>Liked albums</h2>
             <CardContainer style={{marginBottom: '80px'}}>
                 {albums.map(album => (
-                    <Card key={album._id}>
-                        <CardImage></CardImage>
-                        <CardText>
-                            <h4>{album.name}</h4>
-                        </CardText>
-                    </Card>
+                    <Link to={{
+                        pathname: "/album",
+                        state: album
+                    }} key={album._id} style={{textDecoration: 'none', color: 'white'}}>
+                        <Card key={album._id}>
+                            <CardImage></CardImage>
+                            <CardText>
+                                <h4>{album.name}</h4>
+                            </CardText>
+                        </Card>
+                    </Link>
                 ))}       
             </CardContainer>
         </div>
